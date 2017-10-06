@@ -13,8 +13,11 @@ public protocol TSUD {
 public extension TSUD {
     static var stringKey: String {
         let s = String(describing: Self.self)
-        let index = s.index(of: " ") ?? s.endIndex
-        return String(s[..<index])
+        if let index = s.index(of: " ") {
+            return String(s[..<index])
+        } else {
+            return s
+        }
     }
 }
 
