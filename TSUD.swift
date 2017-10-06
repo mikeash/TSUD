@@ -40,11 +40,11 @@ extension TSUD {
     }
     
     public static func get(_ nsud: UserDefaults = .standard) -> ValueType {
-        return self.init()[.standard]
+        return self.init()[nsud]
     }
     
     public static func set(_ value: ValueType, _ nsud: UserDefaults = .standard) {
-        self.init()[.standard] = value
+        self.init()[nsud] = value
     }
     
     public subscript(nsud: UserDefaults) -> ValueType {
