@@ -78,13 +78,10 @@ extension TSUD {
         case is Data: return value
         
         default:
-            do {
-                let data = try PropertyListEncoder().encode([value])
-                let wrappedPlist = try PropertyListSerialization.propertyList(from: data, options: [], format: nil) as? [Any]
-                return wrappedPlist?[0]
-            } catch {
-                return nil
-            }
+            let data = try? PropertyListEncoder().encode([value])
+            guard let dataUnwrapped = data else { return nil }
+            let wrappedPlist = (try? PropertyListSerialization.propertyList(from: dataUnwrapped, options: [], format: nil)) as? [Any]
+            return wrappedPlist?[0]
         }
     }
 }
