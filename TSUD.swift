@@ -71,9 +71,7 @@ extension TSUD {
         }
     }
     
-    private func encode(_ value: ValueType?) -> Any? {
-        guard let value = value else { return nil }
-        
+    private func encode(_ value: ValueType) -> Any? {
         switch value {
         case let value as OptionalP where value.isNil: return nil
         case is Date: return value
