@@ -73,3 +73,18 @@ These methods allow you to specify the `UserDefaults` object to work with, in th
 If you want to access the value in another `UserDefaults` instance as a mutable value, there's a subscript which takes a `UserDefaults` instance and provides the value. Unfortunately, Swift doesn't allow `static` subscripts, so you have to instantiate the key type:
 
     fontSize()[otherDefaults] += 10.0
+
+# Code Signing
+You have to set your development team as *Custom Path* in `(Xcode menu → Preferences… → Locations → Custom Paths)`
+with the following properties:
+
+| Key           | Value            |
+| ---           | ---              |
+| Name:         | DEVELOPMENT_TEAM |
+| Display Name: | Development Team |
+| Path:         | <YOUR TEAM ID>   |
+
+**But there’s a catch!** Unfortunately, as soon as you change anything in the project (update a build setting, add a new build phase, rename a target etc.) the development team will be automatically added to the project.pbxproj file (in the TargetAttributes of the project object). This requires constant care not to commit those changes.
+
+Thanks to 0xced for his [answer on Stackoverflow](https://stackoverflow.com/a/40424891) to the
+question [How to prevent Xcode 8 from saving “development team” in .pbxproj?](https://stackoverflow.com/q/39669661)
